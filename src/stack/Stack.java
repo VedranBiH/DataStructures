@@ -9,7 +9,7 @@ package stack;
 public class Stack {
 
 	private Integer[] ary;
-	private int index = 0;
+	private int index = -1;
 
 	/**
 	 * @param size initialize stack with a specific size
@@ -25,13 +25,15 @@ public class Stack {
 	 * @return true/false if stack length is 0
 	 */
 	public boolean isEmpty() {
-		return ary.length == 0;
+		return index == -1;
 	}
 
 	public void push(int element) {
-		if (index >= ary.length) {
+		index++;
+		if (index < ary.length) {
 			ary[index] = element;
-			index++;
+		} else {
+			throw new IllegalArgumentException("Not enough room in stack. Please remove item(s) to add more");
 		}
 	}
 
